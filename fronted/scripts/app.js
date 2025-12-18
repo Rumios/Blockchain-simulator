@@ -83,7 +83,7 @@ class Node {
     // 동기화 및 검사
     syncBlock(block) {
         if (block.previousHash === this.getLastestBlock().hash) {
-            this.chain.block(block);
+            this.chain.push(block);
         }
     }
 }
@@ -100,7 +100,15 @@ class Network {
     }
 }
 
+// 첫 블록 (더미 역할)
 const Genesis_Block = new Node("Genesis Block");
+
+const nodeA = new Node("A");
+const nodeB = new Node("B");
+const nodeC = new Node("C");
+
+// network 형성
+const network = new Network([nodeA, nodeB, nodeC]);
 
 const tx = {
     from: "Alice",
@@ -108,6 +116,10 @@ const tx = {
     amount: 100,
 };
 
-Genesis_Block.addBlock(tx);
+const newBlock = nodeA.addBlock(tx);
+network.broadcast(newBlock, nodeA);
 
 console.log(Genesis_Block.chain);
+console.log(nodeA.chain);
+console.log(nodeB.chain);
+console.log(nodeC.chain);
