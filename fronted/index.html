@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Simulator</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="app">
+        <header class="toolbar">
+            <button id="addUserBtn">사용자 추가</button>
+            <div class="view-toggle">
+                <button id="userViewBtn" class="view-btn active">User View</button>
+                <button id="nodeViewBtn" class="view-btn">Node View</button>
+            </div>
+
+            <form id="txForm" class="tx-form">
+                <select id="txOrigin"></select>
+                <select id="txFrom"></select>
+                <select id="txTo"></select>
+                <input id="txAmount" type="number" min="1" placeholder="금액">
+                <button type="submit">전송</button>
+            </form>
+        </header>
+
+        <main class="main-area">
+            <div id="simulator" class="simulator">
+                <div id="centerMessage" class="center-message" aria-hidden="true"></div>
+                <svg id="links" class="links" aria-hidden="true"></svg>
+                <div id="packetContainer" class="packet-container" aria-hidden="true"></div>
+            </div>
+
+            <aside id="detailsPanel" class="details-panel" aria-hidden="true">
+                <h3 id="detailsName">-</h3>
+                <div class="field">이름: <span id="detailNameText"></span> <button id="renameBtn">변경</button></div>
+                <div class="field">재산: <span id="detailBalanceText"></span> 원 <button id="changeBalanceBtn">변경</button></div>
+                <div class="field"><button id="deleteUserBtn" class="danger">삭제</button></div>
+
+            </aside>
+        </main>
+
+        <!-- modal -->
+        <div id="modal" class="modal" aria-hidden="true">
+            <div class="modal-inner">
+                <h3>사용자 추가</h3>
+                <label id="labelName">이름 <input id="newUserName" type="text"></label>
+                <label id="labelAmount">초기 자금 <input id="newUserAmount" type="number" min="0" value="0"></label>
+                <div class="modal-actions">
+                    <button id="createUserBtn">추가</button>
+                    <button id="cancelCreateBtn">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+</body>
+</html>
